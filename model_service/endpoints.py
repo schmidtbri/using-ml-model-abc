@@ -1,46 +1,36 @@
-import os
-from flask import Flask, jsonify
+from flask import jsonify
 
-from model_manager import ModelManager
-
-
-app = Flask(__name__)
-app.config.from_object(os.environ['APP_SETTINGS'])
-
-
-@app.before_first_request
-def instantiate_model_manager():
-    """ This function runs at application startup it loads all of the model found in the configuration """
-    model_manager = ModelManager()
-    model_manager.load_models(configuration=app.config["MODELS"])
+from model_service import app
+from model_service.model_manager import ModelManager
 
 
 @app.route("/api/models", methods=['GET'])
 def get_models():
-    """  """
+    """ endpoint that returns a list of models """
     # instantiating ModelManager singleton
     model_manager = ModelManager()
 
     # retrieving the model object from the model manager
     model_object = model_manager.get_models()
 
-    return jsonify(model_object)
+    return jsonify(model_object), 200
 
 
 @app.route("/api/models/<qualified_name>/metadata", methods=['GET'])
 def get_metadata(qualified_name):
-    """  """
+    """ endpoint that returns metadata about a single model """
     model_manager = ModelManager()
     metadata = model_manager.get_model_metadata(qualified_name=qualified_name)
 
     if metadata is not None:
-        return jsonify(metadata)
+        return jsonify(metadata), 200
     else:
         return jsonify({"type": "ERROR", "message": "Model not found."}), 404
 
 
 @app.route("/api/models/<qualified_name>/predict", methods=['POST'])
 def predict(qualified_name):
+    """ endpoint that uses a model to make a prediction """
     model_manager = ModelManager()
     model_object = model_manager.get_model(qualified_name=qualified_name)
 
@@ -49,8 +39,4 @@ def predict(qualified_name):
         prediction = model_object.predict()
         return jsonify(prediction)
     except:
-        return "Error", 500
-
-
-if __name__ == '__main__':
-    app.run()
+        return jsonify({"type": "ERROR", "message": "Could not make a prediction."}), 500

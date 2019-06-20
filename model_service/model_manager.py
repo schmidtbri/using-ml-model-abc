@@ -15,7 +15,7 @@ class ModelManager(object):
             model_object = model_class()
 
             if isinstance(model_object, MLModel) is False:
-                raise ValueError("The ModelManager is only meant to hold references to objects of type MLModel.")
+                raise ValueError("The ModelManager can only hold references to objects of type MLModel.")
 
             # saving the model reference to the models list
             cls._models.append(model_object)
