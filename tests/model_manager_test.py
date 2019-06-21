@@ -1,6 +1,6 @@
 import unittest
 from traceback import print_tb
-from model_manager import ModelManager
+from model_service.model_manager import ModelManager
 
 
 # creating a mockup class to test with

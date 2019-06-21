@@ -1,4 +1,6 @@
-from flask import jsonify
+import json
+from flask import jsonify, request
+from schema import SchemaError
 
 from model_service import app
 from model_service.model_manager import ModelManager
@@ -36,7 +38,10 @@ def predict(qualified_name):
 
     # making a prediction with the model object
     try:
-        prediction = model_object.predict()
-        return jsonify(prediction)
-    except:
+        data = json.loads(request.data)
+        prediction = model_object.predict(data)
+        return jsonify(prediction), 200
+    except SchemaError as e:
+        return jsonify({"type": "SCHEMA_ERROR", "message": str(e)}), 400
+    except Exception as e:
         return jsonify({"type": "ERROR", "message": "Could not make a prediction."}), 500

@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $.ajax({
+            url: '/api/models'
+            , success: function(data) {
+                    $('#table').bootstrapTable({
+                    data: models
+                });
+            }});
+        });
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table id="table">
+            <thead>
+                <tr>
+                    <th data-field="display_name">Model Name</th>
+                    <th data-field="description">Description</th>
+                    <th data-field="major_version">Major Version</th>
+                    <th data-field="minor_version">Minor Version</th>
+                </tr>
+            </thead>
+        </table>
+    </form>
+</body>
+</html>
