@@ -13,9 +13,9 @@ def get_models():
     model_manager = ModelManager()
 
     # retrieving the model object from the model manager
-    model_object = model_manager.get_models()
+    models = model_manager.get_models()
 
-    return jsonify(model_object), 200
+    return jsonify(models), 200
 
 
 @app.route("/api/models/<qualified_name>/metadata", methods=['GET'])

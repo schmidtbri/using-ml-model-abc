@@ -6,7 +6,8 @@ from model_service.model_manager import ModelManager
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
-Bootstrap(app)
+bootstrap = Bootstrap(app)
+
 
 import model_service.endpoints
 import model_service.views
