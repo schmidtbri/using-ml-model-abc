@@ -8,7 +8,6 @@ app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 bootstrap = Bootstrap(app)
 
-
 import model_service.endpoints
 import model_service.views
 

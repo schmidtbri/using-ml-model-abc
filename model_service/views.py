@@ -17,10 +17,28 @@ def index():
     return render_template('index.html', models=models)
 
 
-@app.route("/metadata/<qualified_name>", methods=['GET'])
+@app.route("/models/<qualified_name>/metadata", methods=['GET'])
 def display_metadata(qualified_name):
     """ view that displays metadata about a model """
     model_manager = ModelManager()
-    metadata = model_manager.get_model_metadata(qualified_name=qualified_name)
+    model_metadata = model_manager.get_model_metadata(qualified_name=qualified_name)
 
-    return render_template('metadata.html', models=metadata)
+    return render_template('metadata.html', model_metadata=model_metadata)
+
+
+@app.route("/models/<qualified_name>/form", methods=['GET'])
+def display_form(qualified_name):
+    """ view that displays the prediction form of a model """
+    model_manager = ModelManager()
+    model_metadata = model_manager.get_model_metadata(qualified_name=qualified_name)
+
+    return render_template('form.html', model_metadata=model_metadata)
+
+
+@app.route("/models/<qualified_name>/prediction", methods=['GET'])
+def display_prediction(qualified_name):
+    """ view that displays the prediction result of a model """
+    model_manager = ModelManager()
+    model_metadata = model_manager.get_model_metadata(qualified_name=qualified_name)
+
+    return render_template('prediction.html')

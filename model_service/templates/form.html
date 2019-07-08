@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="page-header">
+      <h2>{{ model_metadata.display_name }} </h2>
+    </div>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/brutusin.json-forms/1.3.0/css/brutusin-json-forms.css">
+        <script src="https://code.jquery.com/jquery-1.12.1.min.js" integrity="sha256-I1nTg78tSrZev3kjvfdM5A5Ak/blglGzlaZANLPDl3I=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.string/3.3.4/underscore.string.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/brutusin.json-forms/1.3.0/js/brutusin-json-forms.min.js"></script>
+        <script>
+        var bf = null
+        $(document).ready(function() {
+            $.ajax({
+                url: '/api/models/iris_model/metadata',
+                success: function(data) {
+                    var container = document.getElementById('prediction_form');
+                    var BrutusinForms = brutusin["json-forms"];
+                    bf = BrutusinForms.create(data.input_schema);
+                    bf.render(container);
+                },
+                error: function (request, exception) {
+                    $('#form_container').html('<center>Could not retrieve input schema.</center>');
+                }
+            });
+        });
+
+        function predict(){
+            if (!bf.validate()) {
+                alert('The input data cannot be validated.')
+            }
+            else {
+                alert(JSON.stringify(bf.getData(), null, 4))
+            }
+        }
+
+        </script>
+    </head>
+    <body>
+    <div id="form_container">
+        <div id="prediction_form"> </div>
+        <div class="panel-footer">
+            <button class="btn btn-primary" onclick="predict()">Predict</button>
+        </div>
+    </div>
+    </body>
+    </html>
+{% endblock %}
