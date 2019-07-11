@@ -71,7 +71,7 @@ class ModelManagerTests(unittest.TestCase):
         try:
             model_manager.load_models(configuration=[
                 {
-                    "module_name": "model_manager_test",
+                    "module_name": "tests.model_manager_test",
                     "class_name": "SomeClass"               # using the class defined at the top of this file to test
                 }
             ])
@@ -81,7 +81,8 @@ class ModelManagerTests(unittest.TestCase):
 
         # assert
         self.assertTrue(exception_raised)
-        self.assertTrue(exception_message == "The ModelManager is only meant to hold references to objects of type MLModel.")
+        print(exception_message)
+        self.assertTrue(exception_message == "The ModelManager can only hold references to objects of type MLModel.")
 
 
 if __name__ == '__main__':

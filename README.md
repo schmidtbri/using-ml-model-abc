@@ -35,3 +35,12 @@ make test-predict-endpoint
 ```
 
 ## Running the unit tests
+To run the unit test suite execute these commands:
+```bash
+
+# first install the test dependencies
+make test-dependencies
+
+# run the test suite
+make test
+```
