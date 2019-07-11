@@ -13,7 +13,7 @@
         var bf = null
         $(document).ready(function() {
             $.ajax({
-                url: '/api/models/iris_model/metadata',
+                url: '/api/models/{{ model_metadata.qualified_name }}/metadata',
                 success: function(data) {
                     var container = document.getElementById('prediction_form');
                     var BrutusinForms = brutusin["json-forms"];
@@ -28,21 +28,44 @@
 
         function predict(){
             if (!bf.validate()) {
-                alert('The input data cannot be validated.')
+                alert('The input data is not valid.')
             }
-            else {
-                alert(JSON.stringify(bf.getData(), null, 4))
+            else
+            {
+                $.ajax({
+                    type: "POST",
+                    url: '/api/models/{{ model_metadata.qualified_name }}/predict',
+                    data: JSON.stringify(bf.getData()),
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    processData: false,
+                    success: function(data) {
+                        var html = '<hr><h3>Prediction</h3><table class="table">';
+                        const keys = Object.keys(data)
+                        for (const key of keys) {
+                            html += '<tr><td>' + key + '</td><td>' + data[key] + '</td></tr>';
+                        }
+                        html += '</table>'
+                        $('#prediction').html(html);
+                    },
+                    error: function (request, exception) {
+                        console.log(console.log(bf.getData()));
+                    }
+                });
             }
         }
-
         </script>
     </head>
     <body>
+    <h3>Input</h3>
+    <hr>
     <div id="form_container">
         <div id="prediction_form"> </div>
         <div class="panel-footer">
             <button class="btn btn-primary" onclick="predict()">Predict</button>
         </div>
+    </div>
+    <div id="prediction">
     </div>
     </body>
     </html>

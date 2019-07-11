@@ -39,9 +39,11 @@ def predict(qualified_name):
     # making a prediction with the model object
     try:
         data = json.loads(request.data)
+    except (SchemaError, json.decoder.JSONDecodeError) as e:
+        return jsonify({"type": "SCHEMA_ERROR", "message": str(e)}), 400
+    try:
         prediction = model_object.predict(data)
         return jsonify(prediction), 200
-    except SchemaError as e:
-        return jsonify({"type": "SCHEMA_ERROR", "message": str(e)}), 400
     except Exception as e:
+        print(e)
         return jsonify({"type": "ERROR", "message": "Could not make a prediction."}), 500

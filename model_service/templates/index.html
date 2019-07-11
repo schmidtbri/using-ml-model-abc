@@ -23,7 +23,7 @@
             <td>{{ model.major_version }}</td>
             <td>{{ model.minor_version }}</td>
             <td><a href="/models/{{ model.qualified_name }}/metadata"><button type="button" class="btn btn-default">Metadata</button></a></td>
-            <td><a href="/models/{{ model.qualified_name }}/form"><button type="button" class="btn btn-default">Predict</button></a></td>
+            <td><a href="/models/{{ model.qualified_name }}/predict"><button type="button" class="btn btn-default">Predict</button></a></td>
         </tr>
         {% endfor %}
     </tbody>

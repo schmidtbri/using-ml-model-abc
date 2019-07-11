@@ -26,19 +26,10 @@ def display_metadata(qualified_name):
     return render_template('metadata.html', model_metadata=model_metadata)
 
 
-@app.route("/models/<qualified_name>/form", methods=['GET'])
+@app.route("/models/<qualified_name>/predict", methods=['GET'])
 def display_form(qualified_name):
     """ view that displays the prediction form of a model """
     model_manager = ModelManager()
     model_metadata = model_manager.get_model_metadata(qualified_name=qualified_name)
 
-    return render_template('form.html', model_metadata=model_metadata)
-
-
-@app.route("/models/<qualified_name>/prediction", methods=['GET'])
-def display_prediction(qualified_name):
-    """ view that displays the prediction result of a model """
-    model_manager = ModelManager()
-    model_metadata = model_manager.get_model_metadata(qualified_name=qualified_name)
-
-    return render_template('prediction.html')
+    return render_template('predict.html', model_metadata=model_metadata)
