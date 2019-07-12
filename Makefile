@@ -21,6 +21,9 @@ clean-pyc: ## Remove python artifacts.
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
 
+clean-test:	## Remove test artifacts
+	rm -rf .pytest_cache
+
 test: clean-pyc ## Run unit test suite.
 	export APP_SETTINGS="model_service.config.DevelopmentConfig"; \
 	export FLASK_APP=model_service; \
