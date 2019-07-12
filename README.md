@@ -10,6 +10,10 @@ git clone https://github.com/schmidtbri/using-ml-model-abc
 ```
 Then create a virtual environment and activate it:
 ```bash
+
+# go into the project directory
+cd using-ml-model-abc
+
 make venv
 
 source venv/bin/activate
