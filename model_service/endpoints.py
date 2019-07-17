@@ -1,6 +1,6 @@
 import json
 from flask import jsonify, request
-from schema import SchemaError
+from ml_model_abc import MLModelSchemaValidationException
 
 from model_service import app
 from model_service.model_manager import ModelManager
@@ -45,7 +45,7 @@ def predict(qualified_name):
     try:
         prediction = model_object.predict(data)
         return jsonify(prediction), 200
-    except SchemaError as e:
-        return jsonify({"type": "SCHEMA_ERROR", "message": "Bad input data: {}".format(str(e))}), 400
+    except MLModelSchemaValidationException as e:
+        return jsonify({"type": "SCHEMA_ERROR", "message": str(e)}), 400
     except Exception as e:
         return jsonify({"type": "ERROR", "message": "Could not make a prediction."}), 500

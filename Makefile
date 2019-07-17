@@ -35,13 +35,13 @@ start-server: ## start the local development server
 	export FLASK_DEBUG=1; \
 	flask run
 
-test-models-endpoint:
+test-models-endpoint: ## test the models endpoint
 	curl --request GET --url http://localhost:5000/api/models
 
-test-metadata-endpoint:
+test-metadata-endpoint: ## test the metadata endpoint
 	curl --request GET --url http://localhost:5000/api/models/iris_model/metadata
 
-test-predict-endpoint:
+test-predict-endpoint: ## test the predict endpoint
 	curl --request POST --url http://localhost:5000/api/models/iris_model/predict \
 	--header 'content-type: application/json' \
 	--data '{"petal_length": 1.0, "petal_width": 1.0, "sepal_length": 1.0, "sepal_width": 1.0}'
