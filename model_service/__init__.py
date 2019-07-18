@@ -3,7 +3,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 
 from model_service.model_manager import ModelManager
-print(os.environ)
+
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 bootstrap = Bootstrap(app)

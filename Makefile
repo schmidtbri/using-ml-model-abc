@@ -24,6 +24,9 @@ clean-pyc: ## Remove python artifacts.
 clean-test:	## Remove test artifacts
 	rm -rf .pytest_cache
 
+clean-venv: ## remove all packages from virtual environment
+	pip freeze | grep -v "^-e" | xargs pip uninstall -y
+
 test: clean-pyc ## Run unit test suite.
 	export APP_SETTINGS="model_service.config.DevelopmentConfig"; \
 	export FLASK_APP=model_service; \
