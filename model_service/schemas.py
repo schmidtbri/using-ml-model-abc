@@ -22,12 +22,13 @@ class JsonSchemaProperty(Schema):
 
 class JSONSchema(Schema):
     """ Top level of a JSON schema document """
-    id = fields.String(required=True, allow_none=False, dump_to="$id")
-    schema = fields.String(required=True, allow_none=False, dump_to="$schema")
+    id = fields.String(required=True, allow_none=False)
+    schema = fields.String(required=True, allow_none=False, attribute="$schema", load_from="$schema", dump_to="$schema")
     title = fields.String(required=False, allow_none=False)
     type = fields.String(required=True, allow_none=False)
     properties = fields.Dict(keys=fields.String(), values=JsonSchemaProperty)
     required = fields.List(fields.String(), many=True, required=True, allow_none=False)
+    additionalProperties = fields.Boolean(required=True, allow_none=False)
 
 
 class ModelMetadataSchema(ModelSchema):

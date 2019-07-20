@@ -1,5 +1,5 @@
 import json
-from flask import jsonify, request
+from flask import jsonify, request, Response
 from ml_model_abc import MLModelSchemaValidationException
 
 from model_service import app
@@ -58,14 +58,13 @@ def get_metadata(qualified_name):
     """
     model_manager = ModelManager()
     metadata = model_manager.get_model_metadata(qualified_name=qualified_name)
-
     if metadata is not None:
         response_data = model_metadata_schema.dumps(metadata).data
-        return response_data, 200
+        return Response(response_data, status=200, mimetype='application/json')
     else:
         response = dict(type="ERROR", message="Model not found.")
         response_data = error_schema.dumps(response).data
-        return response_data, 404
+        return Response(response_data, status=400, mimetype='application/json')
 
 
 @app.route("/api/models/<qualified_name>/predict", methods=['POST'])
@@ -105,7 +104,7 @@ def predict(qualified_name):
     except json.decoder.JSONDecodeError as e:
         response = dict(type="DESERIALIZATION_ERROR", message=str(e))
         response_data = error_schema.dumps(response).data
-        return response_data, 400
+        return Response(response_data, status=400, mimetype='application/json')
 
     # getting the model object from the Model Manager
     model_manager = ModelManager()
@@ -115,7 +114,7 @@ def predict(qualified_name):
     if model_object is None:
         response = dict(type="ERROR", message="Model not found.")
         response_data = error_schema.dumps(response).data
-        return response_data, 404
+        return Response(response_data, status=404, mimetype='application/json')
 
     try:
         prediction = model_object.predict(data)
@@ -124,8 +123,8 @@ def predict(qualified_name):
         # responding with a 400 if the schema does not meet the model's input schema
         response = dict(type="SCHEMA_ERROR", message=str(e))
         response_data = error_schema.dumps(response).data
-        return response_data, 400
+        return Response(response_data, status=400, mimetype='application/json')
     except Exception as e:
         response = dict(type="ERROR", message="Could not make a prediction.")
         response_data = error_schema.dumps(response).data
-        return response_data, 500
+        return Response(response_data, status=500, mimetype='application/json')

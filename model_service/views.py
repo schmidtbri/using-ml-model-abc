@@ -23,7 +23,10 @@ def display_metadata(qualified_name):
     model_manager = ModelManager()
     model_metadata = model_manager.get_model_metadata(qualified_name=qualified_name)
 
-    return render_template('metadata.html', model_metadata=model_metadata)
+    if model_metadata is not None:
+        return render_template('metadata.html', model_metadata=model_metadata)
+    else:
+        return render_template('model_not_found.html')
 
 
 @app.route("/models/<qualified_name>/predict", methods=['GET'])
