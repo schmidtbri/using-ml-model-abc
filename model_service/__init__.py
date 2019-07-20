@@ -1,3 +1,4 @@
+""" A flask application for hosting machine learning models. """
 import os
 from flask import Flask
 from flask_bootstrap import Bootstrap
@@ -5,7 +6,9 @@ from flask_bootstrap import Bootstrap
 from model_service.model_manager import ModelManager
 
 app = Flask(__name__)
-app.config.from_object(os.environ['APP_SETTINGS'])
+# this allows the application to be instantiated without any configuration for unit testing
+if os.environ.get("APP_SETTINGS") is not None:
+    app.config.from_object(os.environ['APP_SETTINGS'])
 bootstrap = Bootstrap(app)
 
 import model_service.endpoints

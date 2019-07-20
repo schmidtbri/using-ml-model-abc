@@ -81,7 +81,6 @@ class ModelManagerTests(unittest.TestCase):
 
         # assert
         self.assertTrue(exception_raised)
-        print(exception_message)
         self.assertTrue(exception_message == "The ModelManager can only hold references to objects of type MLModel.")
 
 
