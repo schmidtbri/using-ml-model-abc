@@ -4,9 +4,8 @@ from apispec_webframeworks.flask import FlaskPlugin
 
 from model_service import __doc__
 from model_service.schemas import *
-from  model_service.endpoints import *
+from model_service.endpoints import *
 
-# Create spec
 spec = APISpec(
     openapi_version="3.0.2",
     title='Model Service',
@@ -27,6 +26,5 @@ with app.test_request_context():
     spec.path(view=get_metadata)
     spec.path(view=predict)
 
-# We're good to go! Save this to a file for now.
 with open('../openapi_specification.yaml', 'w') as f:
     f.write(spec.to_yaml())
