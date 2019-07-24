@@ -5,7 +5,7 @@ contextlib2==0.5.5
 dominate==2.3.5
 Flask==1.1.1
 Flask-Bootstrap==3.3.7.1
-iris-model==0.1.0
+git+https://github.com/schmidtbri/ml-model-abc-improvements#egg=iris-model
 itsdangerous==1.1.0
 Jinja2==2.10.1
 joblib==0.13.2
