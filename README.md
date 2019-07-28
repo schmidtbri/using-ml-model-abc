@@ -1,6 +1,8 @@
 # Model Service
 Code showing how to use a model based on the ML model base class.
 
+This code is used in this [blog post](https://medium.com/@brianschmidt_78145/using-the-ml-model-base-class-7b984edf47c5).
+
 ## Installation 
 The makefile included with this project contains targets that help to automate several tasks.
 
