@@ -343,7 +343,7 @@ for rendering, and return the resulting webpage to the user. This view
 also renders links to a model's metadata and prediction views. These
 views are presented below. The index webpage looks like this:
 
-![](index_view.png)
+![Index View]({attach}index_view.png){ width=100% }
 
 A similar approach is followed for the metadata view, which displays an
 individual model's metadata as well as the input and output schemas. The
@@ -355,7 +355,7 @@ One difference between this view and the index view is that it accepts a
 path parameter that determines which model's metadata is rendered in the
 view. The metadata webpage looks like this:
 
-![](metadata_view.png)
+![Metadata View]({attach}metadata_view.png){ width=100% }
 
 # Dynamic Web Form
 
@@ -419,7 +419,7 @@ that renders the prediction to the webpage.
 
 Here is a screen shot of the prediction webpage:
 
-![](predict_view.png)
+![Predict View]({attach}predict_view.png){ width=100% }
 
 # Documentation
 
@@ -494,7 +494,7 @@ viewer](https://editor.swagger.io/)
 for OpenAPI documents which is able to do automatic code generation and
 renders a webpage for viewing the document:
 
-![](openapi_doc.png)
+![OpenAPI Documentation]({attach}openapi_doc.png){ width=100% }
 
 # Conclusion
 
