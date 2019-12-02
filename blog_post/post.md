@@ -6,8 +6,8 @@ Authors: Brian Schmidt
 Summary: In previous blog posts I showed how to build a simple base class for abstracting machine learning models and how to create a python package that makes use of the base class. In this blog post I aim to use the ideas from the previous blog posts to build a simple application that uses the MLModel base class to deploy a model.
 
 This blog post continues the ideas started in two
-[previous](https://towardsdatascience.com/a-simple-ml-model-base-class-ab40e2febf13)
-[blog posts](https://towardsdatascience.com/improving-the-mlmodel-base-class-eded137629bd).
+[previous]({filename}/articles/a-simple-ml-model-base-class/post.md)
+[blog posts]({filename}/articles/improving-the-mlmodel-base-class/post.md).
 
 The code in this blog post can be found in this [github repo](https://github.com/schmidtbri/using-ml-model-abc).
 
@@ -19,7 +19,7 @@ that makes use of the base class. In this blog post I aim to use the
 ideas from the previous blog posts to build a simple application that
 uses the MLModel base class to deploy a model. I will be using the
 iris\_model package built in [this blog
-post](https://towardsdatascience.com/improving-the-mlmodel-base-class-eded137629bd).
+post]({filename}/articles/improving-the-mlmodel-base-class/post.md).
 
 When creating software, interacting with a component through an
 abstraction makes the code easier to understand and evolve. In the
@@ -187,7 +187,7 @@ identify the model.
 
 With the ModelManager class, we can now test it out with the iris\_model
 package from [the previous blog
-post](https://towardsdatascience.com/improving-the-mlmodel-base-class-eded137629bd).
+post]({filename}/articles/improving-the-mlmodel-base-class/post.md).
 To do this we need to install the package from github by executing this
 command:
 
