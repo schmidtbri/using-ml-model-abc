@@ -11,7 +11,7 @@ Jinja2==2.10.1
 joblib==0.13.2
 MarkupSafe==1.1.1
 marshmallow==2.19.5
-numpy==1.16.4
+numpy==1.22.0
 PyYAML==5.1.1
 schema==0.7.0
 scikit-learn==0.21.0
