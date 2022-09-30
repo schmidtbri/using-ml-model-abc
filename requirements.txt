@@ -8,7 +8,7 @@ Flask-Bootstrap==3.3.7.1
 git+https://github.com/schmidtbri/ml-model-abc-improvements#egg=iris-model
 itsdangerous==1.1.0
 Jinja2==2.10.1
-joblib==0.13.2
+joblib==1.2.0
 MarkupSafe==1.1.1
 marshmallow==2.19.5
 numpy==1.16.4
